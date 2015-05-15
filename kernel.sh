@@ -24,7 +24,7 @@ if [[ "$version_number" -ge 10#003015  &&  "$distro_version_number" -ge 21 ]]; t
 	_installed_packages_params="${_devel:+rpm=kernel-devel}    ${_headers:+rpm=kernel-headers}    ${_modules_extra:+rpm=kernel-modules-extra}"
 	echo "Installed kernel- packages: ${_installed_packages_params//rpm=/}"
 	# Fedora 21 从 3.15 开始， kernel 分成了 kernel-core kernel-modules 几个子包，所以需要特别处理
-	$dir/install-packages-from-koji.sh    p=$package,v=$version,r=$release    rpm=$package-core    rpm=$package-modules    $_installed_packages_params
+	$dir/install-packages-from-koji.sh    p=$package,v=$version,r=$release    rpm=$package-{core,modules,tools,tools-libs}    $_installed_packages_params
 else
 	_installed_packages_params="${_devel:+rpm=kernel-devel}  ${_headers:+rpm=kernel-headers}  ${_modules_extra:+rpm=kernel-modules-extra}"
 	echo "Installed kernel- packages: ${_installed_packages_params//rpm=/}"
