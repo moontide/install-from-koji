@@ -9,14 +9,14 @@ OPTION_COLOR="$DARK_CYAN"
 OPTION_INSTANCE_COLOR="$CYAN"
 
 
-yum_command=update
+dnf_command=update
 
 usage ()
 {
 	echo
 	echo "Usage: $0 [${OPTION_COLOR}OPTIONS${ATTR_OFF}] p=<package>,rpm=<rpm>,v=<version>,r=<release>[,a=<arch>] [[p=<package>,]rpm=<rpm>[,v=<version>,r=<release>,a=<arch>]]..."
 	echo "	${OPTION_COLOR}OPTIONS${ATTR_OFF}"
-	echo "		 ${OPTION_INSTANCE_COLOR}/install${ATTR_OFF}	use \`yum install\` command instead of \`yum update\`, useful for update package whose name is changed in new version"
+	echo "		 ${OPTION_INSTANCE_COLOR}/install${ATTR_OFF}	use \`dnf install\` command instead of \`dnf update\`, useful for update package whose name is changed in new version"
 	echo "		 ${OPTION_INSTANCE_COLOR}/download${ATTR_OFF}	Download only, it will override "
 	echo "	<package>, something like 'kernel'"
 	echo "	<rpm>, something like 'kernel-devel', a package can have several rpm. If omitted, it will be \$package name."
@@ -42,7 +42,7 @@ do
 		continue
 	fi
 	if [[ "$1" == ?install ]]; then
-		yum_command=install
+		dnf_command=install
 		shift
 		continue
 	fi
@@ -155,7 +155,7 @@ then
 	echo "wget -c $urls"
 	wget -c $urls
 else
-	echo "yum $yum_command $urls"
-	yum $yum_command $urls
+	echo "dnf $dnf_command $urls"
+	dnf $dnf_command $urls
 fi
 
