@@ -10,6 +10,7 @@ OPTION_INSTANCE_COLOR="$CYAN"
 
 
 dnf_command=update
+dnf_options=
 
 usage ()
 {
@@ -36,16 +37,28 @@ tabs 4 >/dev/null
 default_arch=$(uname -m)
 while [[ ! -z "$1" ]]
 do
-	if [[ "$1" == ?download ]]; then
+	if [[ "$1" == ?download ]];
+	then
 		download_only=true
 		shift
 		continue
 	fi
-	if [[ "$1" == ?install ]]; then
+
+	if [[ "$1" == ?install ]];
+	then
 		dnf_command=install
 		shift
 		continue
 	fi
+
+	# - -- options 直接加到 dnf/yum 参数里，不做额外处理
+	if [[ "$1" == -* ]];
+	then
+		dnf_options="$dnf_options $1"
+		shift
+		continue
+	fi
+
 	params=(${1//,/ })
 echo "${params[*]}"
 
@@ -140,8 +153,10 @@ echo -e "	release=	\e[34m$release\e[m"
 echo -e "	arch=		\e[35m$arch\e[m"
 
 	rpm_file="$rpm-$version-$release.$arch.rpm"
-	rpm_files="$rpm_files $rpm_file" 
-	urls="$urls http://kojipkgs.fedoraproject.org/packages/$package/$version/$release/$arch/$rpm_file"
+	rpm_files="$rpm_files $rpm_file"
+	url="http://kojipkgs.fedoraproject.org/packages/$package/$version/$release/$arch/$rpm_file"
+echo "	url=		$url"
+	urls="$urls $url"
 
 	shift
 done
@@ -155,7 +170,7 @@ then
 	echo "wget -c $urls"
 	wget -c $urls
 else
-	echo "dnf $dnf_command $urls"
-	dnf $dnf_command $urls
+	echo "dnf $dnf_command $dnf_options $urls"
+	dnf $dnf_command $dnf_options $urls
 fi
 
