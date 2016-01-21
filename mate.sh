@@ -13,12 +13,14 @@ $dir/install-packages-from-koji.sh\
     p=mate-desktop,rpm=mate-desktop{,-libs},v=$version,r=$release\
     p=mate-session-manager\
     p=mate-terminal\
+    p=mate-power-manager\
     p=mate-system-monitor\
     p=mate-screensaver\
     p=mate-settings-daemon\
     p=mate-media\
     p=mate-notification-daemon\
     p=mate-control-center,rpm=mate-control-center{,-filesystem}\
+    p=mate-applets\
     p=mate-sensors-applet\
     p=mate-netspeed\
     p=atril,rpm=atril{,-libs}\
@@ -30,7 +32,7 @@ $dir/install-packages-from-koji.sh\
     p=mate-panel,rpm=mate-panel{,-libs}\
     p=mate-menus,rpm=mate-menus{,-libs}\
     p=caja,rpm=caja{,-extensions,-schemas}\
-    p=caja-extensions,rpm=caja-open-terminal\
+    p=caja-extensions,rpm=caja-{open-terminal,sendto}\
     p=mate-utils,rpm=mate-{disk-usage-analyzer,screenshot,search-tool,system-log}\
     p=libmatekbd\
     p=libmatemixer\
