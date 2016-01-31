@@ -8,12 +8,12 @@
 
 	./install-packages-from-koji.sh  [/download | /install]  [p=_包名称_,v=_版本号_,r=发行号]...
 
-[基本用法截图](screenshots-01-basic-usage.png?raw=true)
+![基本用法截图](screenshots-01-basic-usage.png?raw=true)
 
 * 如果加上了 `/download`，则只下载，不安装。
 * 如果加上了 `/install`，则执行 `dnf install`，而不是 `dnf update` 命令。
 
-	[只下载不安装的用法截图](screenshots-02-download-only.png?raw=true)
+	![只下载不安装的用法截图](screenshots-02-download-only.png?raw=true)
 
 例如：
 
@@ -50,12 +50,12 @@
 	- kernel-devel
 	- kernel-headers
 
-	[kernel.sh](screenshots-03-run-kernel.sh.png?raw=true)
+	![kernel.sh](screenshots-03-run-kernel.sh.png?raw=true)
 
 
 * wine.sh - 更新很多 wine-\* 包的便利脚本
 
-	[wine.sh](screenshots-04-run-wine.sh.png?raw=true)
+	![wine.sh](screenshots-04-run-wine.sh.png?raw=true)
 
 
 * firefox.sh - 更新 firefox 包的便利脚本
