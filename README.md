@@ -119,3 +119,15 @@
 	- libstdc++
 	- libstdc++-devel
 
+* compiz.sh - 更新很多 [compiz](http://koji.fedoraproject.org/koji/packageinfo?packageID=87) 相关的包。除了 [fusion-icon](http://koji.fedoraproject.org/koji/packageinfo?packageID=5406) 包，其他的包包括
+
+	- [libcompizconfig](http://koji.fedoraproject.org/koji/packageinfo?packageID=5159)
+	- [compizconfig-python](http://koji.fedoraproject.org/koji/packageinfo?packageID=5164)
+	- [compiz-plugins-main](http://koji.fedoraproject.org/koji/packageinfo?packageID=11436)
+	- [compiz-plugins-extra](http://koji.fedoraproject.org/koji/packageinfo?packageID=15276)
+	- [compiz-plugins-unsupported](http://koji.fedoraproject.org/koji/packageinfo?packageID=15298)
+	- [compiz-bcop](http://koji.fedoraproject.org/koji/packageinfo?packageID=4909)
+	- [emerald](http://koji.fedoraproject.org/koji/packageinfo?packageID=1667)
+	- [emerald-themes](http://koji.fedoraproject.org/koji/packageinfo?packageID=1668)
+	- [ccsm](http://koji.fedoraproject.org/koji/packageinfo?packageID=5169)
+
