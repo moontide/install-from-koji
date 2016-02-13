@@ -42,14 +42,14 @@
 	- kernel
 	- kernel-core
 	- kernel-modules
-	- kernel-tools
-	- kernel-tools-libs
 
 	并且，会自动探测下列包，并更新/安装探测到的包
 
 	- kernel-modules-extra
 	- kernel-devel
 	- kernel-headers
+	- kernel-tools
+	- kernel-tools-libs
 
 	![kernel.sh](screenshots-03-run-kernel.sh.png?raw=true)
 
