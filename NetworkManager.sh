@@ -4,7 +4,7 @@ release="$2"
 
 shift 2
 $dir/install-packages-from-koji.sh\
-    p=NetworkManager,v=$version,r=$release,rpm=NetworkManager{,-{adsl,bluetooth,glib,libnm,wifi,wwan,tui}}\
+    p=NetworkManager,v=$version,r=$release,rpm=NetworkManager{,-{adsl,bluetooth,glib,libnm,wifi,wwan,tui,team}}\
 \
     p=NetworkManager-openvpn\
 	rpm=NetworkManager-openvpn-gnome\
