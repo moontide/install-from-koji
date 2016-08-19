@@ -154,7 +154,7 @@ echo -e "	arch=		\e[35m$arch\e[m"
 
 	rpm_file="$rpm-$version-$release.$arch.rpm"
 	rpm_files="$rpm_files $rpm_file"
-	url="http://kojipkgs.fedoraproject.org/packages/$package/$version/$release/$arch/$rpm_file"
+	url="https://kojipkgs.fedoraproject.org/packages/$package/$version/$release/$arch/$rpm_file"
 echo "	url=		$url"
 	urls="$urls $url"
 
