@@ -73,7 +73,7 @@ then
 elif [[ "$version_number" -ge 10#003015  &&  "$distro_version_number" -ge 21 ]]; then
 	#_core=$(rpm -qa kernel${PAE}-core)
 	#_modules=$(rpm -qa kernel${PAE}-modules)
-	optional_packages_params="${has_devel:+rpm=kernel${PAE}-devel}    ${has_headers:+rpm=kernel-headers}    ${has_modules_extra:+rpm=kernel${PAE}-modules-extra}    ${has_tools:+p=kernel-tools,rpm=kernel-tools,v=${kernel_tools_version}}    ${${has_tools_libs:+p=kernel-tools,rpm=kernel-tools-libs}"
+	optional_packages_params="${has_devel:+rpm=kernel${PAE}-devel}    ${has_headers:+rpm=kernel-headers}    ${has_modules_extra:+rpm=kernel${PAE}-modules-extra}    ${has_tools:+p=kernel-tools,rpm=kernel-tools,v=${kernel_tools_version}}    ${has_tools_libs:+p=kernel-tools,rpm=kernel-tools-libs}"
 	echo "Installed kernel${PAE}- packages: ${optional_packages_params//rpm=/}"
 	# Fedora 21 从 3.15 开始， kernel 分成了 kernel${PAE}-core kernel${PAE}-modules 几个子包，所以需要特别处理
 	$dir/install-packages-from-koji.sh  $*    p=$package,v=$version,r=$release,rpm=$package${PAE}    rpm=$package${PAE}-{core,modules}    $optional_packages_params
