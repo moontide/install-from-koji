@@ -19,8 +19,8 @@ $dir/install-packages-from-koji.sh p=$package,rpm=$package,v=$version,r=$release
 # https://wiki.archlinux.org/index.php/wine#Removing_menu_entries
 user_dir=/home/liuyan
 #rm -f $user_dir/.local/share/applications/wine/Programs/*
-/usr/bin/rm -v -f $user_dir/.local/share/applications/wine-extension*
-/usr/bin/rm -v -f $user_dir/.local/share/icons/hicolor/*/*/application-x-wine-extension*
-/usr/bin/rm -v -f $user_dir/.local/share/mime/application/x-wine-extension*
-/usr/bin/rm -v -f $user_dir/.local/share/mime/packages/x-wine*
+#/usr/bin/rm -v -f $user_dir/.local/share/applications/wine-extension*
+#/usr/bin/rm -v -f $user_dir/.local/share/icons/hicolor/*/*/application-x-wine-extension*
+#/usr/bin/rm -v -f $user_dir/.local/share/mime/application/x-wine-extension*
+#/usr/bin/rm -v -f $user_dir/.local/share/mime/packages/x-wine*
 
