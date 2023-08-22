@@ -15,5 +15,4 @@ $dir/install-packages-from-koji.sh\
     p=network-manager-applet\
 	rpm=libnm-gtk\
     rpm=nm-connection-editor\
-    $*
-
+    "$@"

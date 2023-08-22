@@ -11,5 +11,4 @@ if [[ -z "$version" || -z "$release" ]]; then
 fi
 
 shift 2
-$dir/install-packages-from-koji.sh    p=$package,v=$version,r=$release,rpm=$package{,-{alsa,gstreamer,jack-audio-connection-kit,libs,plugin-jack,pulseaudio,utils}}    a=i686,rpm=$package-{libs,alsa}    $*
-
+$dir/install-packages-from-koji.sh    p=$package,v=$version,r=$release,rpm=$package{,-{alsa,gstreamer,jack-audio-connection-kit{,-libs},libs,plugin-jack,pulseaudio,utils}}    a=i686,rpm=$package-{libs,alsa}    "$@"

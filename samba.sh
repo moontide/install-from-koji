@@ -11,5 +11,4 @@ if [[ -z "$version" || -z "$release" ]]; then
 fi
 
 shift 2
-$dir/install-packages-from-koji.sh    p=$package,v=$version,r=$release,rpm={$package{,-{client,client-libs,common-libs,common-tools,libs,winbind{,-clients,-modules}}},libsmbclient,libwbclient}    rpm=$package-common,a=noarch    $*
-
+$dir/install-packages-from-koji.sh    p=$package,v=$version,r=$release,rpm={$package{,-{client,client-libs,common-libs,common-tools,libs,winbind{,-clients,-modules}}},libsmbclient,libwbclient}    rpm=$package-common,a=noarch    "$@"

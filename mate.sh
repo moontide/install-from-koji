@@ -48,4 +48,4 @@ $dir/install-packages-from-koji.sh\
     p=mate-icon-theme-faenza\
     p=mate-backgrounds\
     p=libmateweather,rpm=libmateweather-data\
-	$*
+	"$@"

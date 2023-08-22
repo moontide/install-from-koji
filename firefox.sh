@@ -11,5 +11,4 @@ if [[ -z "$version" || -z "$release" ]]; then
 fi
 
 shift 2
-$dir/install-packages-from-koji.sh    p=$package,v=$version,r=$release    $*
-
+$dir/install-packages-from-koji.sh    p=$package,v=$version,r=$release    "$@"

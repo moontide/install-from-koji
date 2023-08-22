@@ -12,4 +12,4 @@ $dir/install-packages-from-koji.sh    p=compiz,v=$version,r=$release \
 	p=emerald-themes,a=noarch \
 	p=compiz-bcop \
 	p=ccsm \
-
+	"$@"

@@ -37,14 +37,8 @@ else
 	PAE=
 fi
 
-has_devel=$(rpm -qa kernel${PAE}-devel)
-has_headers=$(rpm -qa kernel-headers)
-has_modules_extra=$(rpm -qa kernel${PAE}-modules-extra)
-has_tools=$(rpm -qa kernel-tools)
-has_tools_libs=$(rpm -qa kernel-tools-libs)
-
 #if [[ "$version_number" -ge 10#004015 ]]	# 从 kernel-4.15 开始，kernel-tools 和 kernel-tools-libs 移到了 kernel-tools 包里
-#if [[ "$version_number3" -ge 10#004017011 ]]	# 从 kernel-4.17.11 开始，kernel-headers 移到了 kernel-headers 包里，但是：不是每个版本号都会有对应的 kernel-headers 包（猜测这也是为什么要分离的原因？）
+if [[ "$version_number3" -ge 10#004017011 ]]	# 从 kernel-4.17.11 开始，kernel-headers 移到了 kernel-headers 包里，但是：不是每个版本号都会有对应的 kernel-headers 包（猜测这也是为什么要分离的原因？）
 if [[ "$1" == ?tools ]]
 then
 	shift
@@ -64,10 +58,9 @@ else
 	kernel_headers_release=${revision}
 fi
 
-
 if [[ "$version_number3" -ge 10#004017011 ]]	# 从 kernel-4.17.11 开始，kernel-headers 移到了 kernel-headers 包里，但是：不是每个版本号都会有对应的 kernel-headers 包（猜测这也是为什么要分离的原因？）
 then
-	optional_packages_params="${has_devel:+rpm=kernel${PAE}-devel}    ${has_modules_extra:+rpm=kernel${PAE}-modules-extra}    ${has_headers:+p=kernel-headers,v=${kernel_headers_version},r=${kernel_headers_release},rpm=kernel-headers}    ${has_tools:+p=kernel-tools,rpm=kernel-tools,v=${kernel_tools_version}}    ${has_tools_libs:+p=kernel-tools,rpm=kernel-tools-libs}"
+	optional_packages_params="rpm=kernel${PAE}-devel    rpm=kernel${PAE}-modules-extra    kernel-headers,v=${kernel_headers_version},r=${kernel_headers_release},rpm=kernel-headers    p=kernel-tools,rpm=kernel-tools,v=${kernel_tools_version}    p=kernel-tools,rpm=kernel-tools-libs"
 
 	if [[ "$version_number" -ge 10#006002 ]]	# 从 kernel-6.2 开始，kernel-core 分成了 kernel-core 和 kernel-modules-core 两个包
 	then
@@ -76,20 +69,20 @@ then
 
 	echo
 	echo "Installed kernel${PAE}- packages: ${optional_packages_params//rpm=/}"
-	$dir/install-packages-from-koji.sh  $*    p=$package,v=$version,r=$release,rpm=$package${PAE}    rpm=$package${PAE}-{core,modules}    $optional_packages_params
+	$dir/install-packages-from-koji.sh    "$@"    p=$package,v=$version,r=$release,rpm=$package${PAE}    rpm=$package${PAE}-{core,modules}    $optional_packages_params
 elif [[ "$version_number" -ge 10#003015  &&  "$distro_version_number" -ge 21 ]]; then
 	#_core=$(rpm -qa kernel${PAE}-core)
 	#_modules=$(rpm -qa kernel${PAE}-modules)
-	optional_packages_params="${has_devel:+rpm=kernel${PAE}-devel}    ${has_headers:+rpm=kernel-headers}    ${has_modules_extra:+rpm=kernel${PAE}-modules-extra}    ${has_tools:+p=kernel-tools,rpm=kernel-tools,v=${kernel_tools_version}}    ${has_tools_libs:+p=kernel-tools,rpm=kernel-tools-libs}"
+	optional_packages_params="rpm=kernel${PAE}-devel    rpm=kernel-headers    rpm=kernel${PAE}-modules-extra    p=kernel-tools,rpm=kernel-tools,v=${kernel_tools_version}    p=kernel-tools,rpm=kernel-tools-libs"
 
 	echo
 	echo "Installed kernel${PAE}- packages: ${optional_packages_params//rpm=/}"
 	# Fedora 21 从 3.15 开始， kernel 分成了 kernel${PAE}-core kernel${PAE}-modules 几个子包，所以需要特别处理
-	$dir/install-packages-from-koji.sh  $*    p=$package,v=$version,r=$release,rpm=$package${PAE}    rpm=$package${PAE}-{core,modules}    $optional_packages_params
+	$dir/install-packages-from-koji.sh    "$@"    p=$package,v=$version,r=$release,rpm=$package${PAE}    rpm=$package${PAE}-{core,modules}    $optional_packages_params
 else
-	optional_packages_params="${has_devel:+rpm=kernel${PAE}-devel}    ${has_headers:+rpm=kernel-headers}    ${has_modules_extra:+rpm=kernel${PAE}-modules-extra}    ${has_tools:+rpm=kernel-tools}    ${has_tools_libs:+rpm=kernel-tools-libs}"
+	optional_packages_params="rpm=kernel${PAE}-devel    rpm=kernel-headers    rpm=kernel${PAE}-modules-extra    rpm=kernel-tools    rpm=kernel-tools-libs"
 
 	echo
 	echo "Installed kernel${PAE}- packages: ${optional_packages_params//rpm=/}"
-	$dir/install-packages-from-koji.sh  $*    p=$package,v=$version,r=$release,rpm=$package${PAE}    $optional_packages_params
+	$dir/install-packages-from-koji.sh    "$@"    p=$package,v=$version,r=$release,rpm=$package${PAE}    $optional_packages_params
 fi
